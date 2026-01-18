@@ -1,0 +1,270 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+.about {
+  .intro-content {
+    .eyebrow {
+      display: inline-block;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: color-mix(in srgb, var(--default-color), transparent 40%);
+      margin-bottom: 16px;
+    }
+
+    .headline {
+      font-family: var(--heading-font);
+      font-weight: 300;
+      line-height: 1.2;
+      font-size: clamp(28px, 4vw, 44px);
+      margin: 0 0 24px 0;
+    }
+
+    .lead {
+      font-size: 18px;
+      line-height: 1.8;
+      color: color-mix(in srgb, var(--default-color), transparent 10%);
+      margin-bottom: 24px;
+    }
+
+    p {
+      line-height: 1.8;
+      margin-bottom: 24px;
+      color: color-mix(in srgb, var(--default-color), transparent 5%);
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-top: 24px;
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 18px;
+        border-radius: 6px;
+        color: var(--accent-color);
+        background: color-mix(in srgb, var(--accent-color), transparent 92%);
+        border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+        transition: 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+          color: var(--contrast-color);
+          background: var(--accent-color);
+          border-color: var(--accent-color);
+          outline: none;
+          box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 70%);
+        }
+      }
+
+      .link-underline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+        color: var(--accent-color);
+        padding-bottom: 4px;
+        transition: 0.3s ease-in-out;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 1px;
+          background: color-mix(in srgb, var(--accent-color), transparent 40%);
+          transform: scaleX(0.4);
+          transform-origin: left;
+          transition: 0.3s ease-in-out;
+        }
+
+        &:hover,
+        &:focus {
+          color: color-mix(in srgb, var(--accent-color), transparent 10%);
+
+          &::after {
+            transform: scaleX(1);
+          }
+
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .profile-figure {
+    margin: 0;
+
+    .profile-photo {
+      width: 88%;
+      max-width: 440px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px color-mix(in srgb, var(--default-color), transparent 92%);
+      transform: translateY(0);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .profile-caption {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .meta {
+        font-size: 14px;
+        color: color-mix(in srgb, var(--default-color), transparent 20%);
+
+        .funfact {
+          font-size: 13px;
+          margin-top: 4px;
+          color: color-mix(in srgb, var(--default-color), transparent 35%);
+        }
+      }
+    }
+
+    &:hover .profile-photo {
+      transform: translateY(-4px);
+    }
+  }
+
+  .skill-item {
+    padding: 24px;
+    border-radius: 6px;
+    transition: 0.3s ease-in-out;
+    background: color-mix(in srgb, var(--surface-color), var(--accent-color) 2%);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+    height: 100%;
+
+    i {
+      font-size: 24px;
+      color: var(--accent-color);
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: color-mix(in srgb, var(--default-color), transparent 25%);
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent-color), transparent 60%);
+      box-shadow: 0 10px 30px color-mix(in srgb, var(--default-color), transparent 92%);
+    }
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 26px;
+
+    time {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--default-color), transparent 45%);
+      margin-bottom: 6px;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0 0 6px;
+    }
+
+    p {
+      font-size: 14px;
+      color: color-mix(in srgb, var(--default-color), transparent 25%);
+      margin: 0;
+    }
+
+    .dot {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-color), transparent 80%);
+    }
+  }
+
+  .personal-quote {
+    padding: 24px 0;
+
+    p {
+      font-family: var(--heading-font);
+      font-weight: 300;
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.5;
+      color: color-mix(in srgb, var(--default-color), transparent 5%);
+      margin: 0 auto;
+      max-width: 800px;
+    }
+  }
+
+  .fact-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+    background: var(--surface-color);
+    color: color-mix(in srgb, var(--default-color), transparent 10%);
+    transition: 0.3s ease-in-out;
+
+    i {
+      color: var(--accent-color);
+    }
+
+    span {
+      font-size: 14px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent-color), transparent 60%);
+      box-shadow: 0 10px 30px color-mix(in srgb, var(--default-color), transparent 92%);
+    }
+
+    &:focus-within {
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 70%);
+    }
+  }
+
+  @media (max-width: 992px) {
+    .profile-figure {
+      text-align: center !important;
+
+      .profile-photo {
+        width: 72%;
+      }
+    }
+
+    .intro-content .cta-group {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .profile-figure .profile-photo {
+      width: 100%;
+    }
+  }
+}
