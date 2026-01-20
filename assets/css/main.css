@@ -770,7 +770,7 @@ section,
 }
 
 .hero .hero-content p {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   line-height: 1.6;
   margin-bottom: 2.5rem;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
