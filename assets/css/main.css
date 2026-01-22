@@ -2865,9 +2865,21 @@ section,
   text-align: center;
 }
 
+
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+.bottom-banner {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  text-align: center;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  ;
+  font-size: x-large;
+  font-weight: bold;
+  color: yellow;
 }
