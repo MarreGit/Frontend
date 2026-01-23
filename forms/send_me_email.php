@@ -1,12 +1,17 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $to = "info@frontendbymats.com";
-    $subject = "Nytt meddelande";
-    $message = "Namn: " . $_POST['name'] . "\nMeddelande: " . $_POST['message'];
-    $headers = "From: " . $_POST['email'];
+    $subject = "Nytt meddelande från webbplatsen";
+
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $messageText = htmlspecialchars($_POST['message']);
+
+    $message = "Namn: $name\nE-post: $email\n\nMeddelande:\n$messageText";
+    $headers = "From: $email";
 
     mail($to, $subject, $message, $headers);
-    echo "";
 }
 ?>
 
