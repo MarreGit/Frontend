@@ -1,14 +1,35 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = "info@frontendbymats.com";
-    $subject = "Nytt meddelande";
-    $message = "Namn: " . $_POST['name'] . "\nMeddelande: " . $_POST['message'];
-    $headers = "From: " . $_POST['email'];
-
-    mail($to, $subject, $message, $headers);
-    echo "";
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    exit("Invalid request");
 }
-?>
+
+$name = htmlspecialchars(trim($_POST["name"]));
+$email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
+$message = htmlspecialchars(trim($_POST["message"]));
+$headers[] = "Content-Type: text/plain; charset=UTF-8";
+
+if (!$name || !$email || !$message) {
+    exit("All fields must be filled in correctly.");
+}
+
+$to = "info@frontendbymats.com";
+$subject = "New message from contact form";
+
+$body = "Namn: $name\n";
+$body .= "E-post: $email\n\n";
+$body .= "Meddelande:\n$message";
+
+$headers = "From: $email\r\n";
+$headers .= "Reply-To: $email\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8";
+
+if (mail($to, $subject, $body, $headers)) {
+    echo "✅ The message was sent.!";
+} else {
+    echo "❌ Something went wrong. Please try again later..";
+}
+
+
 
 <!DOCTYPE html>
 <html lang="sv">
