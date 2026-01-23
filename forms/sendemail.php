@@ -1,12 +1,12 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = "din-epost@doman.se";
-    $subject = "Nytt meddelande från webbplatsen";
+    $to = "mats@frontendbymats.com";
+    $subject = "Nytt meddelande";
     $message = "Namn: " . $_POST['name'] . "\nMeddelande: " . $_POST['message'];
     $headers = "From: " . $_POST['email'];
 
     mail($to, $subject, $message, $headers);
-    echo "Tack för ditt meddelande!";
+    echo "";
 }
 ?>
 
