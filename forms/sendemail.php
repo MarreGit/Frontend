@@ -1,32 +1,36 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    exit("Invalid request");
+}
 
-    /* 🛑 Honeypot */
-    if (!empty($_POST['website'])) {
-        exit; // Bot
-    }
+// Säkerställ UTF-8
+$name = trim($_POST["name"]);
+$email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
+$message = trim($_POST["message"]);
 
-    /* 🛑 Grundvalidering */
-    if (
-        empty($_POST['name']) ||
-        empty($_POST['email']) ||
-        empty($_POST['message']) ||
-        !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
-    ) {
-        exit;
-    }
+if (!$name || !$email || !$message) {
+    exit("All fields must be filled in correctly.");
+}
 
-    $to = "info@frontendbymats.com";
-    $subject = "Nytt meddelande från webbplatsen";
+$to = "info@frontendbymats.com";
 
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $messageText = htmlspecialchars($_POST['message']);
+/* 🔴 VIKTIGT: koda ämnesraden korrekt */
+$subject_text = "Nytt meddelande från kontaktformulär";
+$subject = "=?UTF-8?B?" . base64_encode($subject_text) . "?=";
 
-    $message = "Namn: $name\nE-post: $email\n\nMeddelande:\n$messageText";
-    $headers = "From: $email";
+$body  = "Namn: $name\n";
+$body .= "E-post: $email\n\n";
+$body .= "Meddelande:\n$message";
 
-    mail($to, $subject, $message, $headers);
+$headers  = "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "From: Frontendbymats <info@frontendbymats.com>\r\n";
+$headers .= "Reply-To: $email\r\n";
+
+if (mail($to, $subject, $body, $headers)) {
+    echo "✅ The message was sent!";
+} else {
+    echo "❌ Something went wrong. Please try again later.";
 }
 ?>
 
