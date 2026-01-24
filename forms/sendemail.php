@@ -3,6 +3,21 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit("Invalid request");
 }
 
+/* 🛑 Honeypot */
+    if (!empty($_POST['website'])) {
+        exit; // Bot
+    }
+
+    /* 🛑 Grundvalidering */
+    if (
+        empty($_POST['name']) ||
+        empty($_POST['email']) ||
+        empty($_POST['message']) ||
+        !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
+    ) {
+        exit;
+    }
+
 // Säkerställ UTF-8
 $name = trim($_POST["name"]);
 $email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
