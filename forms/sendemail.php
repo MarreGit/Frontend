@@ -1,35 +1,34 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    exit("Invalid request");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    /* 🛑 Honeypot */
+    if (!empty($_POST['website'])) {
+        exit; // Bot
+    }
+
+    /* 🛑 Grundvalidering */
+    if (
+        empty($_POST['name']) ||
+        empty($_POST['email']) ||
+        empty($_POST['message']) ||
+        !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
+    ) {
+        exit;
+    }
+
+    $to = "info@frontendbymats.com";
+    $subject = "Nytt meddelande från webbplatsen";
+
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $messageText = htmlspecialchars($_POST['message']);
+
+    $message = "Namn: $name\nE-post: $email\n\nMeddelande:\n$messageText";
+    $headers = "From: $email";
+
+    mail($to, $subject, $message, $headers);
 }
-
-$name = htmlspecialchars(trim($_POST["name"]));
-$email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
-$message = htmlspecialchars(trim($_POST["message"]));
-$headers[] = "Content-Type: text/plain; charset=UTF-8";
-
-if (!$name || !$email || !$message) {
-    exit("All fields must be filled in correctly.");
-}
-
-$to = "info@frontendbymats.com";
-$subject = "New message from contact form";
-
-$body = "Namn: $name\n";
-$body .= "E-post: $email\n\n";
-$body .= "Meddelande:\n$message";
-
-$headers = "From: $email\r\n";
-$headers .= "Reply-To: $email\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8";
-
-if (mail($to, $subject, $body, $headers)) {
-    echo "✅ The message was sent.!";
-} else {
-    echo "❌ Something went wrong. Please try again later..";
-}
-
-
+?>
 
 <!DOCTYPE html>
 <html lang="sv">
